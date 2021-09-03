@@ -1,0 +1,21 @@
+2021-08-29 22:09:32,826 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2021-08-29 23:03:12,297 [Worker-3: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2021-08-30 16:35:10,508 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2021-09-01 15:27:18,989 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2021-09-01 19:11:52,666 [Worker-3: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2021-09-01 19:44:26,529 [Worker-34: Update Maven projects configuration] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2021-09-01 19:44:28,564 [Worker-34: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: mysql:mysql-connector-java:@MYSQL_CJ_VERSION@ @ C:\Users\timot\OneDrive\Desktop\servletrepository\add-employee-servlet-exercise\libs\mysql-connector-java-8.0.26\src\build\misc\pom.xml.
+2021-09-01 19:44:29,938 [Worker-34: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /misc/src/main/java
+2021-09-01 19:44:30,001 [Worker-34: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /misc/src/test/java
+2021-09-01 19:44:45,630 [Worker-15: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-09-01 19:44:45,631 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\timot\OneDrive\Desktop\servletrepository\add-employee-servlet-exercise\libs\mysql-connector-java-8.0.26\src\build\misc\src\main\resources
+2021-09-01 19:44:45,633 [Worker-15: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-09-01 19:44:45,634 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\timot\OneDrive\Desktop\servletrepository\add-employee-servlet-exercise\libs\mysql-connector-java-8.0.26\src\build\misc\src\test\resources
+2021-09-01 19:45:02,119 [Worker-30: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-09-01 19:45:02,119 [Worker-30: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\timot\OneDrive\Desktop\servletrepository\add-employee-servlet-exercise\libs\mysql-connector-java-8.0.26\src\build\misc\src\main\resources
+2021-09-01 19:45:02,120 [Worker-30: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-09-01 19:45:02,121 [Worker-30: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\timot\OneDrive\Desktop\servletrepository\add-employee-servlet-exercise\libs\mysql-connector-java-8.0.26\src\build\misc\src\test\resources
+2021-09-01 19:45:13,012 [Worker-34: Update Maven projects configuration] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 46 sec
+2021-09-02 19:00:31,041 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2021-09-02 20:06:51,104 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2021-09-03 08:34:50,673 [Worker-3: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.

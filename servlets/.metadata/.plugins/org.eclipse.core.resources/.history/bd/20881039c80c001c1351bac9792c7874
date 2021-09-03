@@ -1,0 +1,27 @@
+package com.project1;
+
+import java.sql.SQLException;
+import java.util.List;
+
+public interface EmployeeDAO {
+	
+	void addEmployee(Employee employee) throws SQLException;
+	void updateEmployee(Employee employee) throws SQLException;
+	void deleteEmployee(int id) throws SQLException;
+	List<Employee> getEmployees() throws SQLException;
+	Employee getEmployeeById(int id) throws SQLException;
+
+}
+
+
+//package DAOFiles;
+//
+//public interface EmployeeDAO {
+//	void verifyUser(String email, String password);
+//	void viewTickets(String email);
+//	void addTicket(String email, double amount, String type, String description);
+//	void viewAllTickets();
+//	void viewAllPendings();
+//	void viewAllApproved();
+//	void viewAllRejected();
+//}
