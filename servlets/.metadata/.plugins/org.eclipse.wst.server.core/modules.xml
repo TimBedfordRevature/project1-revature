@@ -4,4 +4,5 @@
   <module moduleId="org.eclipse.jst.jee.server:Reimbursement-App" serverId="Tomcat v10.0 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:add-employee-servlet-exercise2" serverId="Tomcat v10.0 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:project1" serverId="Tomcat v10.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:TEST-PROJECT" serverId="Tomcat v10.0 Server at localhost"/>
 </modules>

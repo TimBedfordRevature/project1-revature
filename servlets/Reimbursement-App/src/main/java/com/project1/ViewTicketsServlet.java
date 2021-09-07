@@ -3,6 +3,9 @@ package com.project1;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -10,11 +13,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public class ViewTicketsServlet extends HttpServlet {
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-	
+
 		out.print("<!DOCTYPE html>\r\n"
 				+ "<html lang=\"en\">\r\n"
 				+ "\r\n"
@@ -94,9 +97,7 @@ public class ViewTicketsServlet extends HttpServlet {
 				+ "                </li>\r\n"
 				+ "\r\n"
 				+ "                <li class=\"nav-item\">\r\n"
-				+ "                    <form action=\"ReimbursmentServlet\" method=\"POST\">\r\n"
-				+ "                        <input class=\"nav-link text-warning\" type=\"submit\" value=\"Form\">\r\n"
-				+ "                    </form>    \r\n"
+				+ "                    <a class=\"nav-link text-warning\" href=\"reimbursement.html\">Form</a>   \r\n"
 				+ "                </li>\r\n"
 				+ "            </ul>\r\n"
 				+ "            <form class=\"form-inline my-2 my-lg-0\" action=\"index.html\">\r\n"
@@ -118,34 +119,36 @@ public class ViewTicketsServlet extends HttpServlet {
 				+ "        <table class=\"table text-light\">\r\n"
 				+ "            <thead>\r\n"
 				+ "                <tr>\r\n"
-				+ "                    <th>ID</th>\r\n"
 				+ "                    <th>Ticket #</th>\r\n"
-				+ "                    <th>Name</th>\r\n"
+				+ "                    <th>Employee #</th>\r\n"
+				+ "                    <th>Type</th>\r\n"
 				+ "                    <th>Request Amount</th>\r\n"
+				+ "                    <th>Status</th>\r\n"
 				+ "                    <th>Description</th>\r\n"
-				+ "                    <th>action</th>\r\n"
 				+ "                </tr>\r\n"
 				+ "            </thead>\r\n"
-				+ "            <tbody>\r\n"
-				+ "                <tr>\r\n"
-				+ "                    <td>1</td>\r\n"
-				+ "                    <td>35241</td>\r\n"
-				+ "                    <td>Tim Bedford</td>\r\n"
-				+ "                    <td>$87.62</td>\r\n"
-				+ "                    <td style=\"white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:1px;\">quis\r\n"
-				+ "                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure\r\n"
-				+ "                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur\r\n"
-				+ "                        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est\r\n"
-				+ "                        laborum</td>\r\n"
-				+ "                    <td><a class=\"text-warning\" href=\"\">view/edit</a></td>\r\n"
-				+ "                </tr>\r\n"
-				+ "            </tbody>\r\n"
+				+ "            <tbody>");
+
+		try {
+			EmployeeDAO dao = EmployeeDAOFactory.getEmployeeDAO();
+			String tickets = dao.viewAllPendings();
+			out.print(tickets);
+			
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+
+		out.print("</tbody>\r\n"
 				+ "        </table>\r\n"
-				+ "\r\n"
 				+ "    </div>\r\n"
-				+ "\r\n"
 				+ "</body>\r\n"
-				+ "\r\n"
 				+ "</html>");
 	}
 }

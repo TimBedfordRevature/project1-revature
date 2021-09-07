@@ -9,11 +9,13 @@ public interface EmployeeDAO {
 	boolean verifyUser(String email, String password) throws SQLException;
 //	void viewTickets(String email) throws SQLException;
 //	void addTicket(String email, double amount, String type, String description) throws SQLException;
+	public void addTicket(int ticketOwnerId, String ticketType, double amount, String description, String status) throws SQLException;
 //	void viewAllTickets() throws SQLException;
-//	void viewAllPendings() throws SQLException;
+	public String viewAllPendings() throws SQLException;
 //	void viewAllApproved() throws SQLException;
 //	void viewAllRejected() throws SQLException;
-	String getEmployeeName(String email) throws SQLException;
+	public String getEmployeeName(String email) throws SQLException;
+	public int getEmployeeId(String email) throws SQLException;
 
 }
 

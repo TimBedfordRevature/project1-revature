@@ -3,9 +3,11 @@ package com.project1;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
-
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,194 +19,42 @@ public class ReimbursmentServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		
-//		String ticketType = request.getParameter("ticketType");
-//		double amount = Double.parseDouble(request.getParameter("amount"));
-//		String description = request.getParameter("description");
-//		int emp_id = Integer.parseInt(request.getParameter("emp_id"));
-//		
-//		
-//		Ticket ticket = new Ticket();
-//		ticket.setTicket_id(emp_id);
-//		ticket.setEmp_id(emp_id);
-//		ticket.setTicketType(ticketType);
-//		ticket.setAmount(amount);
-//		ticket.setDescription(description);
+		String ticketType = request.getParameter("ticketType");
+		double amount = Double.parseDouble(request.getParameter("amount"));
+		String description = request.getParameter("description");
 		
-		out.print("<!DOCTYPE html>\r\n"
-				+ "<html lang=\"en\">\r\n"
-				+ "\r\n"
-				+ "<head>\r\n"
-				+ "    <meta charset=\"UTF-8\">\r\n"
-				+ "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n"
-				+ "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n"
-				+ "    <title>Document</title>\r\n"
-				+ "    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css\"\r\n"
-				+ "        integrity=\"sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l\" crossorigin=\"anonymous\">\r\n"
-				+ "    <script src=\"https://code.jquery.com/jquery-3.5.1.slim.min.js\"\r\n"
-				+ "        integrity=\"sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj\"\r\n"
-				+ "        crossorigin=\"anonymous\"></script>\r\n"
-				+ "    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js\"\r\n"
-				+ "        integrity=\"sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns\"\r\n"
-				+ "        crossorigin=\"anonymous\"></script>\r\n"
-				+ "\r\n"
-				+ "    <style>\r\n"
-				+ "        .container {\r\n"
-				+ "            width: 50%;\r\n"
-				+ "            padding: 40px;\r\n"
-				+ "            border-radius: 30px;\r\n"
-				+ "            background: #191919;\r\n"
-				+ "        }\r\n"
-				+ "\r\n"
-				+ "        .container label {\r\n"
-				+ "            color: grey;\r\n"
-				+ "        }\r\n"
-				+ "\r\n"
-				+ "        .container input,\r\n"
-				+ "        .container textarea,\r\n"
-				+ "        .container select {\r\n"
-				+ "            border: 2px solid #3498db;\r\n"
-				+ "        }\r\n"
-				+ "\r\n"
-				+ "        .container button {\r\n"
-				+ "            border: 0;\r\n"
-				+ "            background: none;\r\n"
-				+ "            display: block;\r\n"
-				+ "            text-align: center;\r\n"
-				+ "            border: 2px solid #c9c613;\r\n"
-				+ "            outline: none;\r\n"
-				+ "            color: white;\r\n"
-				+ "            border-radius: 24px;\r\n"
-				+ "            transition: 0.25s;\r\n"
-				+ "            cursor: pointer\r\n"
-				+ "        }\r\n"
-				+ "\r\n"
-				+ "        .container button:hover {\r\n"
-				+ "            background: #3498db\r\n"
-				+ "        }\r\n"
-				+ "\r\n"
-				+ "        body {\r\n"
-				+ "            margin: 0;\r\n"
-				+ "            padding: 0;\r\n"
-				+ "            font-family: sans-serif;\r\n"
-				+ "            background: linear-gradient(to right, #81802b, #23538a)\r\n"
-				+ "                /* background-image: url('https://images.pond5.com/subtle-gradient-moving-shapes-background-footage-089496665_prevstill.jpeg'); */\r\n"
-				+ "        }\r\n"
-				+ "\r\n"
-				+ "        .jumbotron {\r\n"
-				+ "            background: linear-gradient(to right, #81802b, #23538a)\r\n"
-				+ "                /* background-image: url('https://images.pond5.com/subtle-gradient-moving-shapes-background-footage-089496665_prevstill.jpeg'); */\r\n"
-				+ "        }\r\n"
-				+ "\r\n"
-				+ "        .jumbotron p {\r\n"
-				+ "            color: black;\r\n"
-				+ "            font-weight: 500\r\n"
-				+ "        }\r\n"
-				+ "\r\n"
-				+ "        .jumbotron h1 {\r\n"
-				+ "            color: black;\r\n"
-				+ "            font-weight: 500\r\n"
-				+ "        }\r\n"
-				+ "\r\n"
-				+ "        nav {\r\n"
-				+ "            background-color: #191919;\r\n"
-				+ "        }\r\n"
-				+ "\r\n"
-				+ "        .navbar a {\r\n"
-				+ "            color: #c9c613;\r\n"
-				+ "        }\r\n"
-				+ "        .navbar input {\r\n"
-				+ "            background-color: #191919;\r\n"
-				+ "            border: none;\r\n"
-				+ "        }\r\n"
-				+ "    </style>\r\n"
-				+ "\r\n"
-				+ "</head>\r\n"
-				+ "\r\n"
-				+ "<body>\r\n"
-				+ "\r\n"
-				+ "    <!-- navbar -->\r\n"
-				+ "    <nav class=\"navbar fixed-top navbar-expand-lg navbar-light\">\r\n"
-				+ "        <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n"
-				+ "            <ul class=\"navbar-nav mr-auto\">\r\n"
-				+ "                <li class=\"nav-item dropdown\">\r\n"
-				+ "                    <a class=\"nav-link dropdown-toggle text-warning\" href=\"#\" id=\"navbarDropdown\" role=\"button\"\r\n"
-				+ "                        data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n"
-				+ "                        Actions\r\n"
-				+ "                    </a>\r\n"
-				+ "                    <div class=\"dropdown-menu bg-dark\" aria-labelledby=\"navbarDropdown\">\r\n"
-				+ "                        <form action=\"ViewTicketsServlet\" method=\"POST\">\r\n"
-				+ "                            <input type=\"submit\" class=\"dropdown-item text-warning bg-dark\" name=\"\" value=\"Pending Tickets\">\r\n"
-				+ "                        </form>\r\n"
-				+ "                        <form action=\"ViewTicketsServlet\" method=\"POST\">\r\n"
-				+ "                            <input type=\"submit\" class=\"dropdown-item text-warning bg-dark\" name=\"\" value=\"Ticket History\">\r\n"
-				+ "                        </form>        \r\n"
-				+ "                </li>\r\n"
-				+ "\r\n"
-				+ "                <li class=\"nav-item\">\r\n"
-				+ "                    <form action=\"ReimbursmentServlet\" method=\"POST\">\r\n"
-				+ "                        <input class=\"nav-link text-warning\" type=\"submit\" value=\"Form\">\r\n"
-				+ "                    </form>    \r\n"
-				+ "                </li>\r\n"
-				+ "            </ul>\r\n"
-				+ "            <form class=\"form-inline my-2 my-lg-0\" action=\"index.html\">\r\n"
-				+ "                <button class=\"btn btn-outline-warning my-2 my-sm-0\" type=\"submit\">Logout</button>\r\n"
-				+ "            </form>\r\n"
-				+ "        </div>\r\n"
-				+ "    </nav>\r\n"
-				+ "\r\n"
-				+ "\r\n"
-				+ "    <!-- header -->\r\n"
-				+ "    <div class=\"jumbotron\">\r\n"
-				+ "        <h1 class=\"display-6\">Reimbursement Requests</h1>\r\n"
-				+ "        <p class=\"lead\">In the form below select what your reimbursement request is for as\r\n"
-				+ "            well as provide the\r\n"
-				+ "            reimbursement amount with a short description</p>\r\n"
-				+ "        <hr color=\"#000\">\r\n"
-				+ "    </div>\r\n"
-				+ "\r\n"
-				+ "\r\n"
-				+ "    <!-- main-content -->\r\n"
-				+ "    <div class=\"container\">\r\n"
-				+ "        <h3 class=\"text-center text-light\">Reimbursement Form</h3>\r\n"
-				+ "        <hr color=\"81802b\">\r\n"
-				+ "        <form method=\"POST\">\r\n"
-				+ "            <div class=\"form-group\">\r\n"
-				+ "                <label for=\"reimbursementType\">Select Reimbursement</label>\r\n"
-				+ "                <select class=\"form-control bg-dark text-light\" name=\"ticketType\" id=\"ticketType\">\r\n"
-				+ "                    <option disabled hidden selected>--Select One--</option>\r\n"
-				+ "                    <option class=\"text-light\" id=\"ticketType\">LODGING</option>\r\n"
-				+ "                    <option class=\"text-light\" id=\"ticketType\">TRAVEL</option>\r\n"
-				+ "                    <option class=\"text-light\" id=\"ticketType\">FOOD</option>\r\n"
-				+ "                    <option class=\"text-light\" id=\"ticketType\">OTHER</option>\r\n"
-				+ "                </select>\r\n"
-				+ "            </div>\r\n"
-				+ "            <div class=\"form-group\">\r\n"
-				+ "                <label for=\"exampleFormControlInput1\">Enter Reimbursement Amount</label>\r\n"
-				+ "                <input type=\"number\" name=\"amount\" id=\"amount\" min=\"5\" step=\"0.01\" class=\"form-control bg-dark text-light\" placeholder=\"$0.00\">\r\n"
-				+ "            </div>\r\n"
-				+ "\r\n"
-				+ "            <div class=\"form-group\">\r\n"
-				+ "                <label for=\"exampleFormControlTextarea1\">Please provide a short description of your expenses</label>\r\n"
-				+ "                <textarea class=\"form-control bg-dark text-light\" name=\"description\" id=\"description\" rows=\"3\"\r\n"
-				+ "                    placeholder=\"Example: I spent $57 for hotel lodging\"></textarea>\r\n"
-				+ "            </div>\r\n"
-				+ "            <button type=\"submit\" class=\"btn btn-outline-dark text-light\">Submit</button>\r\n"
-				+ "        </form>\r\n"
-				+ "        <br>\r\n"
-				+ "    </div>\r\n"
-				+ "\r\n"
-				+ "\r\n"
-				+ "    <!-- footer -->\r\n"
-				+ "    <!-- <div class=\"jumbotron jumbotron-fluid\">\r\n"
-				+ "        <div class=\"container\">\r\n"
-				+ "            <h1 class=\"display-4\">Fluid jumbotron</h1>\r\n"
-				+ "            <p class=\"lead\">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>\r\n"
-				+ "        </div>\r\n"
-				+ "    </div> -->\r\n"
-				+ "\r\n"
-				+ "</body>\r\n"
-				+ "\r\n"
-				+ "</html>");
+		Cookie[] cookieE = request.getCookies();
+		String email = cookieE[0].getValue();
+		
+		Cookie[] cookieP = request.getCookies();
+		String password = cookieP[0].getValue();
+		
+		Cookie[] cookieN = request.getCookies();
+		String name = cookieN[0].getValue();
+		
+		try {
+			EmployeeDAO dao = EmployeeDAOFactory.getEmployeeDAO();
+			int empId = dao.getEmployeeId(email);
+			
+			dao.addTicket(empId, ticketType, amount, description, "pending");
+			
+			RequestDispatcher reqD =  request.getRequestDispatcher("/reimbursement.html");
+			reqD.include(request, response);
+			
+//			ticket.setTicketOwnerId(empId);
+//			ticket.setTicketType(ticketType);
+//			ticket.setAmount(amount);
+//			ticket.setDescription(description);
+//			ticket.setStatus("pending");
+			
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
+		
 		
 	}
 
