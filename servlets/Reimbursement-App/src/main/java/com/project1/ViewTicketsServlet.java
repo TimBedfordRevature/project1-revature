@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,6 +18,9 @@ public class ViewTicketsServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
+		
+		Cookie[] cookieE = request.getCookies();
+		String email = cookieE[0].getValue();
 
 		out.print("<!DOCTYPE html>\r\n"
 				+ "<html lang=\"en\">\r\n"
@@ -131,7 +135,8 @@ public class ViewTicketsServlet extends HttpServlet {
 
 		try {
 			EmployeeDAO dao = EmployeeDAOFactory.getEmployeeDAO();
-			String tickets = dao.viewAllPendings();
+			int empId = dao.getEmployeeId(email);
+			String tickets = dao.viewAllPendings(empId);
 			out.print(tickets);
 			
 			

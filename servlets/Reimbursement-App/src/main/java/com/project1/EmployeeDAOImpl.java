@@ -68,10 +68,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
     
     @Override
-   public String viewAllPendings() throws SQLException{
-    	String sql = "select * from tickets where status = 'pending'";
-    	statement = connection.createStatement();
-    	resultSet = statement.executeQuery(sql);
+   public String viewAllPendings(int _empId) throws SQLException{
+    	String sql = "select * from tickets where status = 'pending' AND ticket_owner_id = ?";
+    	preparedStatement = connection.prepareStatement(sql);
+    	preparedStatement.setInt(1, _empId);
+    	resultSet = preparedStatement.executeQuery();
     	
     	 List<Ticket> tickets = new ArrayList<>();
     	 String viewTickets = "";
@@ -87,7 +88,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
            		+ "                    <td>"+ ticketNumber +"</td>\r\n"
            		+ "                    <td>"+ empId +"</td>\r\n"
            		+ "                    <td>"+ ticketType + "</td>\r\n"
-           		+ "                    <td>"+ amount +"</td>\r\n"
+           		+ "                    <td>$"+ amount +"</td>\r\n"
            		+ "                    <td>"+ status + "</td>\r\n"
            		+ "                    <td style=\"white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:1px;\">"+ description +" </td>\r\n"
            		+ "                    \r\n"

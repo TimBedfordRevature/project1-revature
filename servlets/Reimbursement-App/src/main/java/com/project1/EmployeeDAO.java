@@ -11,7 +11,7 @@ public interface EmployeeDAO {
 //	void addTicket(String email, double amount, String type, String description) throws SQLException;
 	public void addTicket(int ticketOwnerId, String ticketType, double amount, String description, String status) throws SQLException;
 //	void viewAllTickets() throws SQLException;
-	public String viewAllPendings() throws SQLException;
+	public String viewAllPendings(int empId) throws SQLException;
 //	void viewAllApproved() throws SQLException;
 //	void viewAllRejected() throws SQLException;
 	public String getEmployeeName(String email) throws SQLException;
