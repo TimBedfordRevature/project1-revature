@@ -2,6 +2,8 @@ package com.project1;
 
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EmployeeDAOImpl implements EmployeeDAO {
 	
@@ -64,6 +66,36 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 //    	e.printStackTrace();
 //    	}
     }
+    
+    @Override
+   public String viewAllPendings() throws SQLException{
+    	String sql = "select * from tickets where status = 'pending'";
+    	statement = connection.createStatement();
+    	resultSet = statement.executeQuery(sql);
+    	
+    	 List<Ticket> tickets = new ArrayList<>();
+    	 String viewTickets = "";
+       while (resultSet.next()) {
+           int ticketNumber = resultSet.getInt(1);
+           int empId = resultSet.getInt(2);
+           String ticketType = resultSet.getString(3);
+           double amount = resultSet.getDouble(4);
+           String description = resultSet.getString(5);
+           String status = resultSet.getString(6);
+           tickets.add(new Ticket(ticketNumber, empId, ticketType, amount, description, status));
+           viewTickets += " <tr>\r\n"
+           		+ "                    <td>"+ ticketNumber +"</td>\r\n"
+           		+ "                    <td>"+ empId +"</td>\r\n"
+           		+ "                    <td>"+ ticketType + "</td>\r\n"
+           		+ "                    <td>"+ amount +"</td>\r\n"
+           		+ "                    <td>"+ status + "</td>\r\n"
+           		+ "                    <td style=\"white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:1px;\">"+ description +" </td>\r\n"
+           		+ "                    \r\n"
+           		+ "                </tr>";
+       }
+       return viewTickets;
+    	
+    }
 
     
     
@@ -107,11 +139,39 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 //		}
 //	}
 //
-//	@Override
-//	public void addTicket(String email, double amount, String type, String description) {
-//		// TODO Auto-generated method stub
-//		
-//	}
+    @Override
+	public void addTicket(int ticketOwnerId, String ticketType, double amount, String description, String status) throws SQLException {
+        String sql = "insert into tickets (ticket_owner_id, ticket_type, amount, description, status) values (?,?,?,?,?)";
+        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, ticketOwnerId);
+        preparedStatement.setString(2, ticketType);
+        preparedStatement.setDouble(3, amount);
+        preparedStatement.setString(4, description);
+        preparedStatement.setString(5, status);
+        preparedStatement.executeUpdate();
+        
+
+//        try {
+//            String sql = "insert into tickets (TicketOwner, TicketType, Amount, Description"
+//                    + ", Status, TimeSubmit) values (?,?,?,?,?,now())";
+//            //ticketnumber autoincremented
+//            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//            //preparedStatement.setInt(2, LoginServlet.LoginEmployee.getEmployeeID());
+//            // or preparedStatement.setInt(2, parseInt(cookieID));
+//            preparedStatement.setString(3, type);
+//            preparedStatement.setDouble(4, amount);
+//            preparedStatement.setString(5, description);
+//            preparedStatement.setString(6, "pending");
+//            int count = preparedStatement.executeUpdate();
+//            if (count > 0)
+//                System.out.println("Ticket Saved!");
+//            else
+//                System.out.println("Ticket not Saved :(");
+//        }
+//        catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+    }
 //
 //	@Override
 //	public void viewAllTickets() {
@@ -270,7 +330,20 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 //		}
 //    
 //	}
-	
+    
+	@Override
+	public int getEmployeeId(String email) throws SQLException {
+    	String sql = "select emp_id from employees where email = ?";
+    	preparedStatement = connection.prepareStatement(sql);
+    	preparedStatement.setString(1, email);
+    	resultSet = preparedStatement.executeQuery();
+    	
+    	int name = 0;
+    	if(resultSet.next()) {
+    	name = resultSet.getInt(1);
+    	}
+		return name;
+	} 
 	
 
 	@Override
@@ -280,9 +353,10 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     	preparedStatement.setString(1, email);
     	resultSet = preparedStatement.executeQuery();
     	
-    	String name = resultSet.getString(1);
+    	String name = "";
+    	if(resultSet.next()) {
+    	name = resultSet.getString(1);
+    	}
 		return name;
-
- 
 	} 
 }

@@ -17,29 +17,19 @@ public class LoginServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-
-		out.print("<h1>HELLO</h1>");
-
-	
 		
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
 
-
 		try {
-			out.print("<h1>TEST</h1>");
 			EmployeeDAO dao = EmployeeDAOFactory.getEmployeeDAO();
-			out.print("<h1>TEST 2</h1>");
 			boolean flag = dao.verifyUser(email, password);
-			out.print("<h1>TEST 3</h1>");
 			if(flag == true) {
 				Employee employee = new Employee();
 				employee.setName(dao.getEmployeeName(email));
 				employee.setEmail(email);
 				employee.setPassword(password);
-				out.println("<h1>You are successfully logged in!</h1>");
-				out.println("<br>Welcome "+ employee.getName());
 
 				Cookie cookieE = new Cookie("email", employee.getEmail());
 				Cookie cookieP = new Cookie("password", employee.getPassword());
@@ -48,7 +38,8 @@ public class LoginServlet extends HttpServlet {
 				response.addCookie(cookieP);
 				response.addCookie(cookieN);
 
-				request.getRequestDispatcher("reimbursement.html").include(request, response);
+				RequestDispatcher reqD =  request.getRequestDispatcher("/reimbursement.html");
+				reqD.include(request, response);
 
 			} else {
 				out.print("<script>\r\n"
