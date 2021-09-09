@@ -68,10 +68,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
     
     @Override
-   public String viewAllPendings() throws SQLException{
-    	String sql = "select * from tickets where status = 'pending'";
-    	statement = connection.createStatement();
-    	resultSet = statement.executeQuery(sql);
+   public String viewAllPendings(int _empId) throws SQLException{
+    	String sql = "select * from tickets where status = 'pending' AND ticket_owner_id = ?";
+    	preparedStatement = connection.prepareStatement(sql);
+    	preparedStatement.setInt(1, _empId);
+    	resultSet = preparedStatement.executeQuery();
     	
     	 List<Ticket> tickets = new ArrayList<>();
     	 String viewTickets = "";
@@ -87,7 +88,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
            		+ "                    <td>"+ ticketNumber +"</td>\r\n"
            		+ "                    <td>"+ empId +"</td>\r\n"
            		+ "                    <td>"+ ticketType + "</td>\r\n"
-           		+ "                    <td>"+ amount +"</td>\r\n"
+           		+ "                    <td>$"+ amount +"</td>\r\n"
            		+ "                    <td>"+ status + "</td>\r\n"
            		+ "                    <td style=\"white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:1px;\">"+ description +" </td>\r\n"
            		+ "                    \r\n"
@@ -331,6 +332,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 //    
 //	}
     
+    
+    
 	@Override
 	public int getEmployeeId(String email) throws SQLException {
     	String sql = "select emp_id from employees where email = ?";
@@ -358,5 +361,34 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     	name = resultSet.getString(1);
     	}
 		return name;
+	}
+	
+
+	@Override
+	public String getJsonArray() throws SQLException {
+		String sql = "select * from tickets";
+		statement = connection.createStatement();
+		resultSet = statement.executeQuery(sql);
+		
+		
+		String data = "[";
+		while(resultSet.next()) {
+			int ticketNumber = resultSet.getInt(1);
+			int empId = resultSet.getInt(2);
+			String ticketType = resultSet.getString(3);
+			double amount = resultSet.getDouble(4);
+			String description = resultSet.getString(5);
+			String status = resultSet.getString(6);
+			data += " {\r\n"
+					+ "    \"ticket_number\": "+ticketNumber+",\r\n"
+					+ "    \"ticket_owner_id\": "+empId+",\r\n"
+					+ "    \"ticket_type\": "+ticketType+",\r\n"
+					+ "    \"amount\": "+amount+",\r\n"
+					+ "    \"description\": "+description+",\r\n"
+					+ "    \"status\": "+status+"\r\n"
+					+ "  },";
+		}
+		data += "]";
+		return data;
 	} 
 }

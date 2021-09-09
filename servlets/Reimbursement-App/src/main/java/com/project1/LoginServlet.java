@@ -38,7 +38,9 @@ public class LoginServlet extends HttpServlet {
 				response.addCookie(cookieP);
 				response.addCookie(cookieN);
 
-				RequestDispatcher reqD =  request.getRequestDispatcher("/reimbursement.html");
+//				RequestDispatcher reqD =  request.getRequestDispatcher("/reimbursement.html");
+//				reqD.include(request, response);
+				RequestDispatcher reqD =  request.getRequestDispatcher("/data.php");
 				reqD.include(request, response);
 
 			} else {

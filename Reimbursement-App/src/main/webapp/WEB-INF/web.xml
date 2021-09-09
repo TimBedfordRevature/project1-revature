@@ -18,6 +18,11 @@
 	<servlet-class>com.project1.ViewTicketsServlet</servlet-class>
 </servlet>
 
+<servlet>
+	<servlet-name>DataServlet</servlet-name>
+	<servlet-class>com.project1.DataServlet</servlet-class>
+</servlet>
+
 
 
 <servlet-mapping>
@@ -33,6 +38,11 @@
 <servlet-mapping>
 	<servlet-name>ViewTicketsServlet</servlet-name>
 	<url-pattern>/ViewTicketsServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>DataServlet</servlet-name>
+	<url-pattern>/DataServlet</url-pattern>
 </servlet-mapping>
   
   
