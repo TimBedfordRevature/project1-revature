@@ -1,8 +1,0 @@
-INDEX VERSION 1.4+C:\Users\timot\OneDrive\Desktop\Project1\servlets\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-2228184835.index
-1168563205.index
-3528417496.index
-3001083262.index
-3730662380.index
-1600194451.index
-1443401901.index

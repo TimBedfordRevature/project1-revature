@@ -21,7 +21,6 @@ public class ViewTicketsServlet extends HttpServlet {
 		
 		Cookie[] cookieE = request.getCookies();
 		String email = cookieE[0].getValue();
-		
 
 		out.print("<!DOCTYPE html>\r\n"
 				+ "<html lang=\"en\">\r\n"
