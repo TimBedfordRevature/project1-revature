@@ -24,3 +24,6 @@ Bootstrap
 
 Logging framework:
 Log4J
+
+# Contributors
+Timothy Bedford, Jay Hattemer
